@@ -30,8 +30,9 @@ def connection():
 	   return connection._connection
 
 def oauth_response(req):
-    connection().request(req.http_method, req.to_url())
-    return connection().getresponse().read()
+    conn = connection()
+    conn.request(req.http_method, req.to_url())
+    return conn.getresponse().read()
 
 class TwitterOAuthClient(oauth.OAuthClient):
     def __init__(self, consumer_key, consumer_secret, request_token_url=REQUEST_TOKEN_URL, access_token_url=ACCESS_TOKEN_URL, authorization_url=AUTHORIZATION_URL):
