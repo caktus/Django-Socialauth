@@ -20,7 +20,11 @@ TWITTER_CREDENTIALS_URL = 'https://twitter.com/account/verify_credentials.json'
 #CONSUMER_SECRET = settings.TWITTER_CONSUMER_SECRET
 
 def connection():
-    try:return connection._connection
+    try:
+        if getattr(settings, "SOCIALAUTH_TWITTER_REUSE_CONNECTIONS", True):
+            return connection._connection
+        else:
+            return connection._new
     except AttributeError:
 	   connection._connection = httplib.HTTPSConnection(TWITTER_URL)
 	   return connection._connection
