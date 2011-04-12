@@ -235,7 +235,7 @@ class TwitterBackend:
                 except:
                     first_name, last_name =  screen_name, ''
                 user.first_name, user.last_name = first_name, last_name
-                #user.email = screen_name + "@socialauth"
+                user.email = screen_name + "@socialauth+twitter"
                 #user.email = '%s@example.twitter.com'%(userinfo.screen_name)
                 user.save()
                 
@@ -310,6 +310,7 @@ class FacebookBackend:
                 user = User.objects.create(username=username)
                 user.first_name = fb_data['first_name']
                 user.last_name = fb_data['last_name']
+                user.email = username + '@socialauth+facebook'
                 user.save()
                 
             fb_profile = FacebookUserProfile(facebook_uid=uid, user=user)
