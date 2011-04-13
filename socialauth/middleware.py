@@ -1,3 +1,6 @@
+from socialauth.models import AuthMeta
+
+
 class AssureEmailForThirdPartyAccounts(object):
     """Adds fake email to authenticated users who don't have any,
     if they had logged in via a third party service.
